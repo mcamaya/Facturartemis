@@ -6,6 +6,9 @@ const app = express(); // servidor web
 
 app.set("port", 5000);
 
+// Middleware -> Funciones intermedias
+app.use(express.json());
+
 // Routes
 app.use("/api/categorias", categoriaRoutes);
 
