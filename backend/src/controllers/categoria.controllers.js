@@ -13,6 +13,22 @@ const getCategorias = async (req, res) => {
     }
 }
 
+
+const getUnicaCategoria = async (req, res) => {
+    try {
+        console.log(req.params);
+        const {id} = req.params;
+
+        const connection = await getConnection();
+        const result = await connection.query("SELECT * FROM categorias WHERE CategoriaID = ?", id);
+        res.json(result);
+
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 const postCategorias = async (req, res) => {
     try {
         /* console.log(req.body); */
@@ -37,5 +53,6 @@ const postCategorias = async (req, res) => {
 
 export const methodsHTTP = {
     getCategorias,
+    getUnicaCategoria,
     postCategorias
 }
